@@ -2,10 +2,13 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
+  const { t } = useTranslation();
   const heroRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
 
@@ -51,45 +54,49 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Phone,
-      title: 'Téléphone',
+      title: t('contact.info.phone'),
       content: '+212 669337793',
       link: 'tel:+212669337793',
     },
     {
       icon: Mail,
-      title: 'Email',
+      title: t('contact.info.email'),
       content: 'elbahjaanas61@gmail.com',
       link: 'mailto:elbahjaanas61@gmail.com',
     },
     {
       icon: MapPin,
-      title: 'Adresse',
+      title: t('contact.info.address'),
       content: 'Marrakech, Maroc',
       link: '#',
     },
     {
       icon: Clock,
-      title: 'Horaires',
-      content: 'Lun - Sam: 9h00 - 18h00',
+      title: t('contact.info.hours'),
+      content: t('contact.info.hours_val'),
       link: '#',
     },
   ];
 
   return (
     <div className="bg-stone">
+      <Helmet>
+        <title>{t('seo.contact.title')}</title>
+        <meta name="description" content={t('seo.contact.description')} />
+      </Helmet>
+
       {/* Hero Section */}
       <section
         ref={heroRef}
         className="pt-32 pb-20 md:pt-40 md:pb-28 section-padding"
       >
         <div className="max-w-4xl mx-auto text-center">
-          <span className="micro-label block mb-6 hero-animate">CONTACT</span>
+          <span className="micro-label block mb-6 hero-animate">{t('contact.hero.label')}</span>
           <h1 className="headline-xl mb-6 hero-animate">
-            Parlons de Votre <span className="text-gold">Projet</span>
+            {t('contact.hero.title_part1')} <span className="text-gold">{t('contact.hero.title_part2')}</span>
           </h1>
           <p className="body-text max-w-2xl mx-auto hero-animate">
-            Que vous ayez une question, besoin d'un devis, ou simplement envie
-            d'en savoir plus sur le Tadelakt, nous sommes là pour vous aider.
+            {t('contact.hero.description')}
           </p>
         </div>
       </section>
@@ -98,7 +105,7 @@ const Contact = () => {
         <div className="max-w-xl mx-auto">
           {/* Contact Info */}
           <div ref={infoRef}>
-            <h2 className="headline-md mb-8 text-center">Informations de Contact</h2>
+            <h2 className="headline-md mb-8 text-center">{t('contact.info.title')}</h2>
             <div className="space-y-6 mb-10">
               {contactInfo.map((info, index) => (
                 <a
@@ -120,10 +127,10 @@ const Contact = () => {
             {/* WhatsApp CTA */}
             <div className="p-6 bg-warm-white/5 border border-current border-opacity-10 text-center">
               <h3 className="font-display text-lg mb-3">
-                Préférez WhatsApp?
+                {t('contact.whatsapp_cta.title')}
               </h3>
               <p className="font-body text-sm opacity-70 mb-4">
-                Contactez-nous directement sur WhatsApp pour une réponse rapide.
+                {t('contact.whatsapp_cta.description')}
               </p>
               <a
                 href="https://wa.me/212669337793"
@@ -132,7 +139,7 @@ const Contact = () => {
                 className="whatsapp-btn w-full justify-center"
               >
                 <MessageCircle className="w-5 h-5" />
-                Discuter sur WhatsApp
+                {t('common.whatsapp_button')}
               </a>
             </div>
           </div>
@@ -150,7 +157,7 @@ const Contact = () => {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Localisation Tadelakt Elbahja"
+            title={t('contact.map_title')}
           />
         </div>
       </section>

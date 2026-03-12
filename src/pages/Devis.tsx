@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Calculator, RotateCcw, Info, Check, ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, Calculator, Info, MessageCircle, RotateCcw, Check } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Devis = () => {
+  const { t, i18n } = useTranslation();
   const heroRef = useRef<HTMLDivElement>(null);
   const calculatorRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
@@ -77,14 +80,14 @@ const Devis = () => {
   const calculatePrice = () => {
     const surfaceValue = parseFloat(surface);
     if (isNaN(surfaceValue) || surfaceValue <= 0) {
-      toast.error('Veuillez entrer une surface valide');
+      toast.error(i18n.language === 'ar' ? 'يرجى إدخال مساحة صحيحة' : 'Veuillez entrer une surface valide');
       return;
     }
     const currentPricePerM2 = surfaceType === 'internal' ? PRICE_INTERNAL : PRICE_EXTERNAL;
     const totalPrice = surfaceValue * currentPricePerM2;
     setPrice(totalPrice);
     setShowDetails(true);
-    toast.success('Calcul effectué avec succès!');
+    toast.success(t('devis.calculator.success'));
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -124,11 +127,11 @@ const Devis = () => {
     setSurface('');
     setPrice(null);
     setShowDetails(false);
-    toast.info('Calculateur réinitialisé');
+    toast.info(t('devis.calculator.reset_info'));
   };
 
   const formatPrice = (value: number) => {
-    return new Intl.NumberFormat('fr-MA', {
+    return new Intl.NumberFormat(i18n.language === 'ar' ? 'ar-MA' : 'fr-MA', {
       style: 'currency',
       currency: 'MAD',
       minimumFractionDigits: 0,
@@ -137,50 +140,53 @@ const Devis = () => {
   };
 
   const inclusions = [
-    'Préparation des surfaces',
-    'Application du Tadelakt (2-3 couches)',
-    'Polissage au savon noir',
-    'Finition étanche',
-    'Garantie 5 ans',
+    t('devis.details.items.prep'),
+    t('devis.details.items.app'),
+    t('devis.details.items.soap'),
+    t('devis.details.items.waterproof'),
+    t('devis.details.items.warranty'),
   ];
 
   const notes = [
-    'Le prix peut varier selon la complexité du projet',
-    'Les surfaces inférieures à 10m² peuvent avoir un tarif majoré',
-    'Transport et hébergement en dehors de Marrakech en sus',
-    'Devis définitif après visite sur site',
+    t('devis.details.notes.complexity'),
+    t('devis.details.notes.small'),
+    t('devis.details.notes.travel'),
+    t('devis.details.notes.final'),
   ];
 
   const internalImages = [
-    { title: 'Hammam', url: 'images/TadelaktPro-jardin-des-Douars-Essaouira.jpg' },
-    { title: 'Spa', url: 'https://images.unsplash.com/photo-1544161515-4af6ce1dbbe3?q=80&w=400&auto=format&fit=crop' },
-    { title: 'Salles de Bain', url: 'https://images.unsplash.com/photo-1620626011761-9963d7521477?q=80&w=400&auto=format&fit=crop' },
-    { title: 'Chambres', url: 'public/images/TadelaktPro-jardin-des-Douars-Essaouira.jpg' },
+    { title: t('gallery.categories.spa'), url: '/images/TadelaktPro-Jardin-des-Douars-Essaouira-room-Sultan-1-1536x1024.webp' },
+    { title: t('gallery.categories.spa'), url: 'https://images.unsplash.com/photo-1544161515-4af6ce1dbbe3?q=80&w=400&auto=format&fit=crop' },
+    { title: t('gallery.categories.bathroom'), url: 'https://images.unsplash.com/photo-1620626011761-9963d7521477?q=80&w=400&auto=format&fit=crop' },
+    { title: t('gallery.categories.rooms'), url: '/images/TadelaktPro-Jardin-des-Douars-Essaouira-room-Sultan-1-1536x1024.webp' },
   ];
 
-  const externalImages = [
-    { title: 'Façades', url: 'https://images.unsplash.com/photo-1628592102751-ba83b03a442a?q=80&w=400&auto=format&fit=crop' },
-    { title: 'Murs Extérieurs', url: 'https://images.unsplash.com/photo-1518349662325-bc283c7482f5?q=80&w=400&auto=format&fit=crop' },
-    { title: 'Piscines', url: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=400&auto=format&fit=crop' },
-    { title: 'Terrasses', url: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=400&auto=format&fit=crop' },
+  const galleryPreviews = [
+    { title: t('devis.categories.facades'), url: 'https://images.unsplash.com/photo-1628592102751-ba83b03a442a?q=80&w=400&auto=format&fit=crop' },
+    { title: t('devis.categories.exterior_walls'), url: 'https://images.unsplash.com/photo-1518349662325-bc283c7482f5?q=80&w=400&auto=format&fit=crop' },
+    { title: t('gallery.categories.spa'), url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop' },
+    { title: t('gallery.categories.shower'), url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=400&auto=format&fit=crop' },
   ];
 
   return (
     <div className="bg-stone">
+      <Helmet>
+        <title>{t('seo.devis.title')}</title>
+        <meta name="description" content={t('seo.devis.description')} />
+      </Helmet>
+
       {/* Hero Section */}
       <section
         ref={heroRef}
         className="pt-32 pb-20 md:pt-40 md:pb-28 section-padding"
       >
         <div className="max-w-4xl mx-auto text-center">
-          <span className="micro-label block mb-6 hero-animate">DEVIS GRATUIT</span>
+          <span className="micro-label block mb-6 hero-animate">{t('devis.hero.label')}</span>
           <h1 className="headline-xl mb-6 hero-animate">
-            Calculez Votre <span className="text-gold">Devis</span>
+            {t('devis.hero.title_part1')} <span className="text-gold">{t('devis.hero.title_part2')}</span>
           </h1>
           <p className="body-text max-w-2xl mx-auto hero-animate">
-            Obtenez une estimation instantanée pour votre projet Tadelakt.
-            Entrez simplement la surface en mètres carrés et découvrez le prix
-            indicatif.
+            {t('devis.hero.description')}
           </p>
         </div>
       </section>
@@ -212,7 +218,7 @@ const Devis = () => {
             <div className="relative z-10 flex items-center justify-center gap-3 mb-8">
               <Calculator className="w-8 h-8 text-gold" strokeWidth={1.5} />
               <h2 className="font-display text-2xl md:text-3xl text-warm-white">
-                Calculateur de Prix
+                {t('devis.calculator.title')}
               </h2>
             </div>
 
@@ -226,7 +232,7 @@ const Devis = () => {
                     : 'text-warm-white/70 hover:text-warm-white hover:bg-white/5'
                     }`}
                 >
-                  Intérieur
+                  {t('devis.calculator.internal')}
                 </button>
                 <button
                   onClick={() => { setSurfaceType('external'); setPrice(null); setShowDetails(false); }}
@@ -235,13 +241,13 @@ const Devis = () => {
                     : 'text-warm-white/70 hover:text-warm-white hover:bg-white/5'
                     }`}
                 >
-                  Extérieur
+                  {t('devis.calculator.external')}
                 </button>
               </div>
 
               {/* Surface Type Images */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
-                {(surfaceType === 'internal' ? internalImages : externalImages).map((img, idx) => (
+                {(surfaceType === 'internal' ? internalImages : galleryPreviews).map((img, idx) => (
                   <div key={idx} className="relative group overflow-hidden rounded-lg aspect-square border border-warm-white/10">
                     <img
                       src={img.url}
@@ -261,7 +267,7 @@ const Devis = () => {
                   htmlFor="surface"
                   className="block font-ui text-xs uppercase tracking-widest text-warm-white/70 mb-4 text-center"
                 >
-                  Surface en m²
+                  {t('devis.calculator.surface_label')}
                 </label>
                 <div className="relative">
                   <input
@@ -283,7 +289,7 @@ const Devis = () => {
               {/* Price per m² info */}
               <div className="text-center">
                 <p className="font-ui text-xs uppercase tracking-widest text-warm-white/50 mb-2">
-                  Prix par m²
+                  {t('devis.calculator.price_per_m2')}
                 </p>
                 <p className="font-display text-3xl text-gold">
                   {surfaceType === 'internal' ? PRICE_INTERNAL : PRICE_EXTERNAL} MAD
@@ -294,17 +300,17 @@ const Devis = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={calculatePrice}
-                  className="flex-1 btn-primary flex items-center justify-center gap-2"
+                  className="flex-1 btn-primary flex items-center justify-center gap-2 group"
                 >
-                  Calculer
-                  <ArrowRight className="w-4 h-4" />
+                  {t('devis.calculator.calculate')}
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
                 <button
                   onClick={resetCalculator}
                   className="flex items-center justify-center gap-2 px-6 py-4 border border-warm-white/30 text-warm-white font-ui text-sm uppercase tracking-widest transition-all duration-300 hover:bg-warm-white/10"
                 >
                   <RotateCcw className="w-4 h-4" />
-                  Réinitialiser
+                  {t('devis.calculator.reset')}
                 </button>
               </div>
 
@@ -312,13 +318,13 @@ const Devis = () => {
               {price !== null && (
                 <div className="mt-8 p-6 bg-gold/10 rounded-2xl text-center animate-fade-in">
                   <p className="font-ui text-xs uppercase tracking-widest text-warm-white/70 mb-2">
-                    Estimation Totale
+                    {t('devis.calculator.total_est')}
                   </p>
                   <p className="price-display text-gold">
                     {formatPrice(price)}
                   </p>
                   <p className="font-body text-sm text-warm-white/50 mt-2">
-                    Pour {surface} m² de surface Tadelakt
+                    {t('devis.calculator.surface_for', { surface })}
                   </p>
                 </div>
               )}
@@ -335,7 +341,7 @@ const Devis = () => {
             <div className="detail-item p-8 bg-warm-white/5 border border-current border-opacity-10">
               <h3 className="font-display text-xl mb-6 flex items-center gap-3">
                 <Check className="w-6 h-6 text-gold" strokeWidth={1.5} />
-                Ce Prix Inclut
+                {t('devis.details.includes')}
               </h3>
               <ul className="space-y-4">
                 {inclusions.map((item, index) => (
@@ -351,7 +357,7 @@ const Devis = () => {
             <div className="detail-item p-8 bg-warm-white/5 border border-current border-opacity-10">
               <h3 className="font-display text-xl mb-6 flex items-center gap-3">
                 <Info className="w-6 h-6 text-gold" strokeWidth={1.5} />
-                Informations Importantes
+                {t('devis.details.important')}
               </h3>
               <ul className="space-y-4">
                 {notes.map((note, index) => (
@@ -370,11 +376,10 @@ const Devis = () => {
       <section className="py-20 md:py-28 section-padding bg-sage">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="headline-lg text-warm-white mb-6">
-            Prêt à Passer à l'<span className="text-gold">Action</span>?
+            {t('devis.cta.title_part1')} <span className="text-gold">{t('devis.cta.title_part2')}</span>
           </h2>
           <p className="font-body text-warm-white/80 max-w-xl mx-auto mb-10">
-            Ce calculateur vous donne une estimation indicative. Pour un devis
-            précis et personnalisé, contactez-nous directement.
+            {t('devis.cta.description')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
@@ -384,13 +389,14 @@ const Devis = () => {
               className="whatsapp-btn"
             >
               <MessageCircle className="w-5 h-5" />
-              Discuter sur WhatsApp
+              {t('common.whatsapp_button')}
             </a>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-warm-white/30 text-warm-white font-ui text-sm uppercase tracking-widest transition-all duration-300 hover:bg-warm-white/10"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-warm-white/30 text-warm-white font-ui text-sm uppercase tracking-widest transition-all duration-300 hover:bg-warm-white/10 group"
             >
-              Nos Infos
+              {t('common.our_info')}
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>
         </div>
@@ -400,25 +406,25 @@ const Devis = () => {
       <section className="py-20 md:py-28 section-padding">
         <div className="max-w-3xl mx-auto">
           <h2 className="headline-md text-center mb-12">
-            Questions <span className="text-gold">Fréquentes</span>
+            {t('devis.faq.title_part1')} <span className="text-gold">{t('devis.faq.title_part2')}</span>
           </h2>
           <div className="space-y-6">
             {[
               {
-                q: 'Combien de temps dure l\'application?',
-                a: 'Une salle de bain standard prend environ 4-5 jours à appliquer, plus 30 jours de séchage complet.',
+                q: t('devis.faq.q1.q'),
+                a: t('devis.faq.q1.a'),
               },
               {
-                q: 'Le Tadelakt nécessite-t-il beaucoup d\'entretien?',
-                a: 'Non, un entretien minimal suffit. Un nettoyage régulier avec un savon pH neutre et une réapplication de savon noir tous les 2-3 ans.',
+                q: t('devis.faq.q2.q'),
+                a: t('devis.faq.q2.a'),
               },
               {
-                q: 'Puis-je choisir n\'importe quelle couleur?',
-                a: 'Oui! Nous pouvons créer pratiquement n\'importe quelle teinte en mélangeant des pigments naturels à la chaux.',
+                q: t('devis.faq.q3.q'),
+                a: t('devis.faq.q3.a'),
               },
               {
-                q: 'Le Tadelakt est-il vraiment étanche?',
-                a: 'Oui, lorsqu\'il est correctement appliqué et traité au savon noir, le Tadelakt est 100% étanche.',
+                q: t('devis.faq.q4.q'),
+                a: t('devis.faq.q4.a'),
               },
             ].map((faq, index) => (
               <div

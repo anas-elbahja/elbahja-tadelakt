@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { X, ZoomIn } from 'lucide-react';
+import { X, ZoomIn, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Gallery = () => {
+  const { t } = useTranslation();
   const heroRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -50,100 +53,103 @@ const Gallery = () => {
   const galleryImages = [
     {
       src: '/images/hero_bathroom.jpg',
-      alt: 'Salle de bain Tadelakt élégante',
-      category: 'Salle de Bain',
+      alt: t('gallery.images.bathroom_ele'),
+      category: 'bathroom',
     },
     {
       src: '/images/project_arch.jpg',
-      alt: 'Architecture courbe en Tadelakt',
-      category: 'Murs',
+      alt: t('gallery.images.arch_curve'),
+      category: 'walls',
     },
     {
       src: '/images/project_shower.jpg',
-      alt: 'Douche seamless Tadelakt',
-      category: 'Douche',
+      alt: t('gallery.images.shower_seamless'),
+      category: 'shower',
     },
     {
       src: '/images/project_texture.jpg',
-      alt: 'Texture Tadelakt détaillée',
-      category: 'Détail',
+      alt: t('gallery.images.texture_detail'),
+      category: 'detail',
     },
     {
       src: '/images/project_modern.jpg',
-      alt: 'Salle de bain moderne Tadelakt',
-      category: 'Salle de Bain',
+      alt: t('gallery.images.bathroom_modern'),
+      category: 'bathroom',
     },
     {
       src: '/images/project_green.jpg',
-      alt: 'Salle de bain avec accents verts',
-      category: 'Salle de Bain',
+      alt: t('gallery.images.bathroom_green'),
+      category: 'bathroom',
     },
     {
       src: '/images/project_niche.jpg',
-      alt: 'Niche intégrée Tadelakt',
-      category: 'Détail',
+      alt: t('gallery.images.niche_integrated'),
+      category: 'detail',
     },
     {
       src: '/images/project_detail.jpg',
-      alt: 'Détail finition Tadelakt',
-      category: 'Détail',
+      alt: t('gallery.images.finish_detail'),
+      category: 'detail',
     },
     {
       src: '/images/gallery1.jpg',
-      alt: 'Salle de bain luxueuse Tadelakt',
-      category: 'Salle de Bain',
+      alt: t('gallery.images.bathroom_lux'),
+      category: 'bathroom',
     },
     {
       src: '/images/gallery2.jpg',
-      alt: 'Douche minimaliste Tadelakt',
-      category: 'Douche',
+      alt: t('gallery.images.shower_minimalist'),
+      category: 'shower',
     },
     {
       src: '/images/gallery3.jpg',
-      alt: 'Vanity Tadelakt organique',
-      category: 'Vanity',
+      alt: t('gallery.images.vanity_organic'),
+      category: 'vanity',
     },
     {
       src: '/images/gallery4.jpg',
-      alt: 'Niche décorative Tadelakt',
-      category: 'Décoratif',
+      alt: t('gallery.images.niche_decor'),
+      category: 'decor',
     },
     {
       src: '/images/sage_oasis.jpg',
-      alt: 'Spa Tadelakt',
-      category: 'Spa',
+      alt: t('gallery.images.spa_tadelakt'),
+      category: 'spa',
     },
     {
       src: '/images/craftsmanship.jpg',
-      alt: 'Artisanat Tadelakt',
-      category: 'Processus',
+      alt: t('gallery.images.artisanat'),
+      category: 'process',
     },
   ];
 
-  const categories = ['Tous', ...Array.from(new Set(galleryImages.map((img) => img.category)))];
-  const [activeCategory, setActiveCategory] = useState('Tous');
+  const categories = ['all', ...Array.from(new Set(galleryImages.map((img) => img.category)))];
+  const [activeCategory, setActiveCategory] = useState('all');
 
   const filteredImages =
-    activeCategory === 'Tous'
+    activeCategory === 'all'
       ? galleryImages
       : galleryImages.filter((img) => img.category === activeCategory);
 
   return (
     <div className="bg-stone">
+      <Helmet>
+        <title>{t('seo.gallery.title')}</title>
+        <meta name="description" content={t('seo.gallery.description')} />
+      </Helmet>
+
       {/* Hero Section */}
       <section
         ref={heroRef}
         className="pt-32 pb-16 md:pt-40 md:pb-20 section-padding"
       >
         <div className="max-w-4xl mx-auto text-center">
-          <span className="micro-label block mb-6 hero-animate">NOTRE PORTFOLIO</span>
+          <span className="micro-label block mb-6 hero-animate">{t('gallery.hero.label')}</span>
           <h1 className="headline-xl mb-6 hero-animate">
-            Galerie de <span className="text-gold">Réalisations</span>
+            {t('gallery.hero.title_part1')} <span className="text-gold">{t('gallery.hero.title_part2')}</span>
           </h1>
           <p className="body-text max-w-2xl mx-auto hero-animate">
-            Découvrez nos projets de Tadelakt, du simple mur à la salle de bain
-            complète. Chaque réalisation est unique, façonnée à la main selon la
-            tradition marocaine.
+            {t('gallery.hero.description')}
           </p>
         </div>
       </section>
@@ -161,7 +167,7 @@ const Gallery = () => {
                   : 'bg-transparent border border-current border-opacity-30 hover:border-gold'
               }`}
             >
-              {category}
+              {t(`gallery.categories.${category}`)}
             </button>
           ))}
         </div>
@@ -185,7 +191,7 @@ const Gallery = () => {
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
                   <ZoomIn className="w-8 h-8 text-warm-white mx-auto mb-2" strokeWidth={1.5} />
                   <span className="font-ui text-xs uppercase tracking-widest text-warm-white">
-                    {image.category}
+                    {t(`gallery.categories.${image.category}`)}
                   </span>
                 </div>
               </div>
@@ -205,10 +211,11 @@ const Gallery = () => {
             onClick={() => setSelectedImage(null)}
           >
             <X className="w-8 h-8" strokeWidth={1.5} />
+            <span className="sr-only">{t('gallery.lightbox.close')}</span>
           </button>
           <img
             src={selectedImage}
-            alt="Vue agrandie"
+            alt={t('gallery.lightbox.zoom')}
             className="max-w-full max-h-full object-contain"
             onClick={(e) => e.stopPropagation()}
           />
@@ -218,16 +225,16 @@ const Gallery = () => {
       {/* CTA Section */}
       <section className="py-20 md:py-28 section-padding">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="micro-label block mb-4">VOTRE PROJET</span>
+          <span className="micro-label block mb-4">{t('gallery.cta.label')}</span>
           <h2 className="headline-lg mb-6">
-            Envie d'un Résultat <span className="text-gold">Similaire</span>?
+            {t('gallery.cta.title_part1')} <span className="text-gold">{t('gallery.cta.title_part2')}</span>
           </h2>
           <p className="body-text max-w-xl mx-auto mb-10">
-            Chaque projet est unique. Contactez-nous pour discuter de vos idées
-            et recevoir un devis personnalisé.
+            {t('gallery.cta.description')}
           </p>
-          <a href="/devis" className="btn-primary">
-            Demander un Devis
+          <a href="/devis" className="btn-primary group">
+            {t('common.request_quote')}
+            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
       </section>

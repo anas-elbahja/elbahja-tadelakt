@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,12 +23,12 @@ const Navigation = () => {
   }, [location]);
 
   const navLinks = [
-    { path: '/', label: 'Accueil' },
-    { path: '/services', label: 'Services' },
-    { path: '/gallery', label: 'Galerie' },
-    { path: '/about', label: 'À Propos' },
-    { path: '/contact', label: 'Contact' },
-    { path: '/devis', label: 'Devis' },
+    { path: '/', label: t('nav.home', 'Accueil') },
+    { path: '/services', label: t('nav.services', 'Services') },
+    { path: '/gallery', label: t('nav.gallery', 'Galerie') },
+    { path: '/about', label: t('nav.about', 'À Propos') },
+    { path: '/contact', label: t('nav.contact', 'Contact') },
+    { path: '/devis', label: t('nav.devis', 'Devis') },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -73,7 +75,7 @@ const Navigation = () => {
             to="/devis"
             className="hidden lg:inline-flex btn-primary text-xs py-3 px-6"
           >
-            Devis Gratuit
+            {t('nav.devis_btn')}
           </Link>
 
           {/* Mobile Menu Button */}
@@ -125,7 +127,7 @@ const Navigation = () => {
               transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
             }}
           >
-            Devis Gratuit
+            {t('nav.devis_btn')}
           </Link>
         </div>
       </div>

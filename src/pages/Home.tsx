@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Droplets, Leaf, Shield, Infinity } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +16,7 @@ const Home = () => {
   const galleryRef = useRef<HTMLDivElement>(null);
   const testimonialsRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -115,23 +118,23 @@ const Home = () => {
   const features = [
     {
       icon: Droplets,
-      title: 'Imperméable',
-      description: 'Surface naturellement étanche, idéale pour douches et salles de bain.',
+      title: t('home.features.waterproof.title'),
+      description: t('home.features.waterproof.description'),
     },
     {
       icon: Infinity,
-      title: 'Sans Joint',
-      description: 'Finition continue sans joints de carrelage pour un aspect luxueux.',
+      title: t('home.features.seamless.title'),
+      description: t('home.features.seamless.description'),
     },
     {
       icon: Leaf,
-      title: '100% Naturel',
-      description: 'Chaux, pigments naturels et savon noir—sans COV ni produits chimiques.',
+      title: t('home.features.natural.title'),
+      description: t('home.features.natural.description'),
     },
     {
       icon: Shield,
-      title: 'Durable',
-      description: 'Développe une patine unique tout en restant étanche pendant des décennies.',
+      title: t('home.features.durable.title'),
+      description: t('home.features.durable.description'),
     },
   ];
 
@@ -144,24 +147,29 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: 'Fatima B.',
-      role: 'Propriétaire, Marrakech',
-      text: 'Notre salle de bain est devenue un véritable sanctuaire. La qualité du travail est exceptionnelle et le résultat dépasse nos attentes.',
+      name: t('home.testimonials.t1.name'),
+      role: t('home.testimonials.t1.role'),
+      text: t('home.testimonials.t1.text'),
     },
     {
-      name: 'Pierre L.',
-      role: 'Architecte d\'Intérieur, Casablanca',
-      text: 'Je recommande Tadelakt Elbahja à tous mes clients. Leur maîtrise de cette technique ancestrale est remarquable.',
+      name: t('home.testimonials.t2.name'),
+      role: t('home.testimonials.t2.role'),
+      text: t('home.testimonials.t2.text'),
     },
     {
-      name: 'Sophie M.',
-      role: 'Propriétaire, Rabat',
-      text: 'Un travail d\'artisan véritable. L\'équipe a transformé notre salle de bain en un espace de bien-être unique.',
+      name: t('home.testimonials.t3.name'),
+      role: t('home.testimonials.t3.role'),
+      text: t('home.testimonials.t3.text'),
     },
   ];
 
   return (
     <div className="bg-stone">
+      <Helmet>
+        <title>{t('seo.home.title')}</title>
+        <meta name="description" content={t('seo.home.description')} />
+      </Helmet>
+
       {/* Hero Section */}
       <section
         ref={heroRef}
@@ -173,7 +181,7 @@ const Home = () => {
             <div className="hero-image-frame relative aspect-[4/5] max-w-lg mx-auto lg:mx-0">
               <img
                 src="/images/hero_bathroom.jpg"
-                alt="Salle de bain Tadelakt"
+                alt="Salle de bain Tadelakt traditionnelle à Marrakech - Tadelakt Elbahja"
                 className="w-full h-full object-cover img-warm"
               />
             </div>
@@ -182,26 +190,25 @@ const Home = () => {
           {/* Hero Text */}
           <div ref={heroTextRef} className="order-1 lg:order-2 lg:pl-8">
             <span className="micro-label block mb-6 hero-animate">
-              TADELAKT • PLÂTRE MAROCAIN
+              {t('home.hero.subtitle')}
             </span>
             <h1 className="headline-xl mb-6 hero-animate">
-              Tadelakt Authentique
+              {t('home.hero.title_part1')}
               <br />
-              <span className="text-gold">Élégance Moderne</span>
+              <span className="text-gold">{t('home.hero.title_part2')}</span>
             </h1>
             <p className="body-text max-w-md mb-8 hero-animate">
-              Murs et baignoires sans couture, étanches et finis à la main selon
-              la tradition millénaire du plâtre de chaux marocain.
+              {t('home.hero.description')}
             </p>
             <div className="flex flex-wrap items-center gap-4 hero-animate">
               <Link to="/devis" className="btn-primary">
-                Demander un Devis
+                {t('common.request_quote', 'Demander un Devis')}
               </Link>
               <Link
                 to="/gallery"
                 className="inline-flex items-center gap-2 font-ui text-sm uppercase tracking-widest hover:text-gold transition-colors"
               >
-                Voir nos Réalisations
+                {t('common.see_projects', 'Voir nos Réalisations')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -212,8 +219,8 @@ const Home = () => {
       {/* Features Section */}
       <section ref={featuresRef} className="py-20 md:py-28 section-padding">
         <div className="text-center mb-16">
-          <span className="micro-label block mb-4">POURQUOI CHOISIR LE TADELAKT?</span>
-          <h2 className="headline-lg">Avantages Uniques</h2>
+          <span className="micro-label block mb-4">{t('home.features.label')}</span>
+          <h2 className="headline-lg">{t('home.features.title')}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -236,14 +243,14 @@ const Home = () => {
       <section ref={galleryRef} className="py-20 md:py-28 section-padding">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
           <div>
-            <span className="micro-label block mb-4">NOTRE PORTFOLIO</span>
-            <h2 className="headline-lg">Galerie de Projets</h2>
+            <span className="micro-label block mb-4">{t('home.gallery_preview.label')}</span>
+            <h2 className="headline-lg">{t('home.gallery_preview.title')}</h2>
           </div>
           <Link
             to="/gallery"
             className="inline-flex items-center gap-2 font-ui text-sm uppercase tracking-widest hover:text-gold transition-colors mt-4 md:mt-0"
           >
-            Voir Tout
+            {t('common.see_all')}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -260,8 +267,8 @@ const Home = () => {
                 className="w-full h-full object-cover img-warm"
               />
               <div className="gallery-overlay">
-                <span className="font-ui text-xs uppercase tracking-widest text-warm-white opacity-0 gallery-item:hover:opacity-100 transition-opacity">
-                  Voir Plus
+                <span className="font-ui text-xs uppercase tracking-widest text-warm-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  {t('common.learn_more')}
                 </span>
               </div>
             </div>
@@ -272,8 +279,8 @@ const Home = () => {
       {/* Testimonials Section */}
       <section ref={testimonialsRef} className="py-20 md:py-28 section-padding bg-sage">
         <div className="text-center mb-16">
-          <span className="micro-label block mb-4 text-warm-white/70">TÉMOIGNAGES</span>
-          <h2 className="headline-lg text-warm-white">Ce Que Disent Nos Clients</h2>
+          <span className="micro-label block mb-4 text-warm-white/70">{t('home.testimonials.label')}</span>
+          <h2 className="headline-lg text-warm-white">{t('home.testimonials.title')}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
@@ -306,23 +313,22 @@ const Home = () => {
       {/* CTA Section */}
       <section ref={ctaRef} className="py-20 md:py-28 section-padding">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="micro-label block mb-4">COMMENCEZ VOTRE PROJET</span>
+          <span className="micro-label block mb-4">{t('home.cta.label')}</span>
           <h2 className="headline-lg mb-6">
-            Prêt à Transformer Votre Espace?
+            {t('home.cta.title')}
           </h2>
           <p className="body-text max-w-xl mx-auto mb-10">
-            Contactez-nous dès aujourd'hui pour discuter de votre projet et
-            recevoir un devis personnalisé gratuitement.
+            {t('home.cta.description')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link to="/devis" className="btn-primary">
-              Demander un Devis Gratuit
+              {t('common.request_quote_free')}
             </Link>
             <Link
               to="/contact"
               className="btn-secondary border-charcoal text-charcoal"
             >
-              Nos Infos
+              {t('common.our_info')}
             </Link>
           </div>
         </div>

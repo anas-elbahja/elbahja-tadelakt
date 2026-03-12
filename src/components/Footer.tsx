@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Instagram, Phone, Mail, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -14,23 +16,23 @@ const Footer = () => {
               Tadelakt Elbahja
             </Link>
             <p className="font-body text-sm opacity-70 leading-relaxed max-w-xs">
-              L'art ancestral du Tadelakt marocain, réinventé pour les intérieurs contemporains.
+              {t('footer.brand_desc')}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
             <h4 className="font-ui text-xs uppercase tracking-widest opacity-50 mb-6">
-              Navigation
+              {t('nav.services')}
             </h4>
             <ul className="space-y-3">
               {[
-                { path: '/', label: 'Accueil' },
-                { path: '/services', label: 'Services' },
-                { path: '/gallery', label: 'Galerie' },
-                { path: '/about', label: 'À Propos' },
-                { path: '/contact', label: 'Contact' },
-                { path: '/devis', label: 'Devis' },
+                { path: '/', label: t('nav.home') },
+                { path: '/services', label: t('nav.services') },
+                { path: '/gallery', label: t('nav.gallery') },
+                { path: '/about', label: t('nav.about') },
+                { path: '/contact', label: t('nav.contact') },
+                { path: '/devis', label: t('nav.devis') },
               ].map((link) => (
                 <li key={link.path}>
                   <Link
@@ -47,15 +49,15 @@ const Footer = () => {
           {/* Services */}
           <div>
             <h4 className="font-ui text-xs uppercase tracking-widest opacity-50 mb-6">
-              Services
+              {t('nav.services')}
             </h4>
             <ul className="space-y-3">
               {[
-                'Murs en Tadelakt',
-                'Salles de Bain',
-                'Douches',
-                'Finitions Décoratives',
-                'Projets Sur Mesure',
+                t('services.list.walls.title'),
+                t('services.list.bathrooms.title'),
+                t('common.douches', 'Douches'),
+                t('services.list.decorative.title'),
+                t('services.list.custom.title'),
               ].map((service) => (
                 <li key={service}>
                   <span className="font-body text-sm opacity-70">{service}</span>
@@ -67,7 +69,7 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h4 className="font-ui text-xs uppercase tracking-widest opacity-50 mb-6">
-              Contact
+              {t('nav.contact')}
             </h4>
             <ul className="space-y-4">
               <li>
@@ -91,7 +93,7 @@ const Footer = () => {
               <li>
                 <span className="flex items-center gap-3 font-body text-sm opacity-70">
                   <MapPin className="w-4 h-4" />
-                  Marrakech, Maroc
+                  {i18n.language === 'ar' ? 'مراكش، المغرب' : 'Marrakech, Maroc'}
                 </span>
               </li>
             </ul>
@@ -124,20 +126,20 @@ const Footer = () => {
         <div className="hairline mb-8"></div>
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-ui text-xs opacity-50">
-            © {currentYear} Tadelakt Elbahja. Tous droits réservés.
+            © {currentYear} Tadelakt Elbahja. {t('footer.rights')}
           </p>
           <div className="flex items-center gap-6">
             <Link
               to="/privacy"
               className="font-ui text-xs opacity-50 hover:opacity-100 transition-opacity"
             >
-              Politique de Confidentialité
+              {t('footer.privacy')}
             </Link>
             <Link
               to="/terms"
               className="font-ui text-xs opacity-50 hover:opacity-100 transition-opacity"
             >
-              Conditions d'Utilisation
+              {t('footer.terms')}
             </Link>
           </div>
         </div>

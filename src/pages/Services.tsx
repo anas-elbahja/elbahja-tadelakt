@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 import { Home, Bath, Palette, Sparkles, Check, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,6 +12,7 @@ const Services = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const processRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -69,53 +72,49 @@ const Services = () => {
   const services = [
     {
       icon: Home,
-      title: 'Murs en Tadelakt',
-      description:
-        'Transformez vos murs en surfaces d\'art vivantes. Notre application experte du Tadelakt crée des finitions lisses et veloutées qui respirent et régulent l\'humidité naturellement.',
+      title: t('services.list.walls.title'),
+      description: t('services.list.walls.desc'),
       features: [
-        'Finition sans couture',
-        'Régulation naturelle de l\'humidité',
-        'Résistant aux moisissures',
-        'Large gamme de couleurs',
+        t('home.features.seamless.title'),
+        t('features.water_reg'),
+        t('features.mold_res'),
+        t('features.color_range'),
       ],
       image: '/images/project_modern.jpg',
     },
     {
       icon: Bath,
-      title: 'Salles de Bain & Douches',
-      description:
-        'L\'application par excellence du Tadelakt. Créez des espaces de bain étanches, sans joints de carrelage, d\'une beauté intemporelle et d\'une facilité d\'entretien incomparable.',
+      title: t('services.list.bathrooms.title'),
+      description: t('services.list.bathrooms.desc'),
       features: [
-        '100% étanche',
-        'Sans joints de carrelage',
-        'Compatible chauffage au sol',
-        'Durabilité exceptionnelle',
+        t('home.features.waterproof.title'),
+        t('features.no_joints'),
+        t('features.heated_floor'),
+        t('home.features.durable.title'),
       ],
       image: '/images/project_shower.jpg',
     },
     {
       icon: Palette,
-      title: 'Finitions Décoratives',
-      description:
-        'Du simple au sophistiqué, nos finitions décoratives mettent en valeur la beauté naturelle du Tadelakt. Niches, arches, et détails architecturaux sur mesure.',
+      title: t('services.list.decorative.title'),
+      description: t('services.list.decorative.desc'),
       features: [
-        'Niches intégrées',
-        'Arches et courbes',
-        'Effets texturés',
-        'Patine personnalisée',
+        t('features.niches'),
+        t('features.arches'),
+        t('features.textured'),
+        t('features.patina'),
       ],
       image: '/images/project_niche.jpg',
     },
     {
       icon: Sparkles,
-      title: 'Projets Sur Mesure',
-      description:
-        'Chaque espace est unique. Nous travaillons en étroite collaboration avec vous et vos architectes pour créer des solutions Tadelakt parfaitement adaptées à votre vision.',
+      title: t('services.list.custom.title'),
+      description: t('services.list.custom.desc'),
       features: [
-        'Consultation personnalisée',
-        'Plans sur mesure',
-        'Collaboration architecte',
-        'Suivi de projet dédié',
+        t('features.consult'),
+        t('features.custom_plans'),
+        t('features.arch_collaboration'),
+        t('features.dedicated_followup'),
       ],
       image: '/images/gallery1.jpg',
     },
@@ -124,55 +123,58 @@ const Services = () => {
   const process = [
     {
       step: '01',
-      title: 'Consultation',
-      description: 'Nous discutons de votre projet, vos besoins et votre vision.',
+      title: t('services.process.step1.title'),
+      description: t('services.process.step1.desc'),
     },
     {
       step: '02',
-      title: 'Évaluation',
-      description: 'Visite sur site et évaluation technique des surfaces.',
+      title: t('services.process.step2.title'),
+      description: t('services.process.step2.desc'),
     },
     {
       step: '03',
-      title: 'Devis',
-      description: 'Proposition détaillée avec estimation des coûts et délais.',
+      title: t('services.process.step3.title'),
+      description: t('services.process.step3.desc'),
     },
     {
       step: '04',
-      title: 'Préparation',
-      description: 'Préparation minutieuse des surfaces pour une adhérence optimale.',
+      title: t('services.process.step4.title'),
+      description: t('services.process.step4.desc'),
     },
     {
       step: '05',
-      title: 'Application',
-      description: 'Application artisanale du Tadelakt en plusieurs couches.',
+      title: t('services.process.step5.title'),
+      description: t('services.process.step5.desc'),
     },
     {
       step: '06',
-      title: 'Finition',
-      description: 'Polissage au savon noir pour une étanchéité parfaite.',
+      title: t('services.process.step6.title'),
+      description: t('services.process.step6.desc'),
     },
   ];
 
   return (
     <div className="bg-stone">
+      <Helmet>
+        <title>{t('seo.services.title')}</title>
+        <meta name="description" content={t('seo.services.description')} />
+      </Helmet>
+
       {/* Hero Section */}
       <section
         ref={heroRef}
         className="pt-32 pb-20 md:pt-40 md:pb-28 section-padding"
       >
         <div className="max-w-4xl">
-          <span className="micro-label block mb-6 hero-animate">NOS SERVICES</span>
+          <span className="micro-label block mb-6 hero-animate">{t('services.hero.label')}</span>
           <h1 className="headline-xl mb-6 hero-animate">
-            L'Art du <span className="text-gold">Tadelakt</span>
+            {t('services.hero.title_part1', "L'Art du")} <span className="text-gold">Tadelakt</span>
           </h1>
           <p className="body-text max-w-2xl mb-8 hero-animate">
-            Du savoir-faire ancestral marocain aux techniques contemporaines,
-            nous offrons une gamme complète de services pour transformer vos
-            espaces en œuvres d'art vivantes.
+            {t('services.hero.description')}
           </p>
           <Link to="/devis" className="btn-primary hero-animate">
-            Demander un Devis
+            {t('common.request_quote')}
             <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
@@ -222,7 +224,7 @@ const Services = () => {
                   to="/gallery"
                   className="inline-flex items-center gap-2 font-ui text-sm uppercase tracking-widest text-gold hover:underline"
                 >
-                  En Savoir Plus
+                  {t('common.learn_more')}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -237,15 +239,13 @@ const Services = () => {
           {/* Left - Title */}
           <div>
             <span className="micro-label block mb-4 text-warm-white/70">
-              NOTRE PROCESSUS
+              {t('services.process.label')}
             </span>
             <h2 className="headline-lg text-warm-white mb-6">
-              Comment Nous <span className="text-gold">Travaillons</span>
+              {t('services.process.title_part1', 'Comment Nous')} <span className="text-gold">{t('services.process.title_part2', 'Travaillons')}</span>
             </h2>
             <p className="font-body text-warm-white/70 leading-relaxed max-w-md">
-              Chaque projet suit un processus rigoureux pour garantir une finition
-              exceptionnelle qui respecte la tradition tout en répondant aux
-              exigences modernes.
+              {t('services.process.desc')}
             </p>
           </div>
 
@@ -273,23 +273,22 @@ const Services = () => {
       {/* CTA Section */}
       <section className="py-20 md:py-28 section-padding">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="micro-label block mb-4">COMMENCEZ DÈS MAINTENANT</span>
+          <span className="micro-label block mb-4">{t('common.start_now')}</span>
           <h2 className="headline-lg mb-6">
-            Votre Projet Mérite l'<span className="text-gold">Excellence</span>
+            {t('services.cta.title')}
           </h2>
           <p className="body-text max-w-xl mx-auto mb-10">
-            Contactez-nous pour discuter de votre projet et recevoir un devis
-            personnalisé adapté à vos besoins.
+            {t('services.cta.description')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link to="/devis" className="btn-primary">
-              Demander un Devis
+              {t('common.request_quote')}
             </Link>
             <Link
               to="/contact"
               className="btn-secondary border-charcoal text-charcoal"
             >
-              Nos Infos
+              {t('common.our_info')}
             </Link>
           </div>
         </div>
