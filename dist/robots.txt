@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tadelakt-elbahja.com/sitemap.xml
+Sitemap: https://tadelaktelbahja.com/sitemap.xml
