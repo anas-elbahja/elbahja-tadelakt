@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { Award, Users, Clock, MapPin, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import craftsmanshipImg from '../assets/images/craftsmanship.jpg';
-import aboutArtisanImg from '../assets/images/about_artisan.jpg';
+import craftsmanshipImg from '../assets/images/craftsmanship.webp';
+import aboutArtisanImg from '../assets/images/about_artisan.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 

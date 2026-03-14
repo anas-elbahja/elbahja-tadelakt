@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { Home, Bath, Palette, Sparkles, Check, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import projectModernImg from '../assets/images/project_modern.jpg';
+import projectModernImg from '../assets/images/project_modern.webp';
 import projectShowerImg from '../assets/images/project_shower.jpg';
-import projectNicheImg from '../assets/images/project_niche.jpg';
-import gallery1Img from '../assets/images/gallery1.jpg';
+import projectNicheImg from '../assets/images/project_niche.webp';
+import gallery1Img from '../assets/images/gallery1.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 

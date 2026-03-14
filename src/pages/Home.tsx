@@ -5,8 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Droplets, Leaf, Shield, Infinity } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import heroImg from '../assets/images/hero_bathroom.jpg';
-import projectArchImg from '../assets/images/project_arch.jpg';
+import heroImg from '../assets/images/hero_bathroom.webp';
+import projectArchImg from '../assets/images/project_arch.webp';
 import projectShowerImg from '../assets/images/project_shower.jpg';
 import projectTextureImg from '../assets/images/project_texture.jpg';
 
