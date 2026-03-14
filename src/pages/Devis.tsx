@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Calculator, Info, MessageCircle, RotateCcw, Check } from 'lucide-react';
+import { ArrowRight, Calculator, Info, MessageCircle, RotateCcw, Check, ZoomIn, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import roomSultanImg from '../assets/images/TadelaktPro-Jardin-des-Douars-Essaouira-room-Sultan-1-1536x1024.webp';
+import spa from '../assets/images/gallery1.webp';
+import bathroom from '../assets/images/hero_bathroom.webp';
+import facade from '../assets/images/33.jpg';
+import exteriorWall from '../assets/images/44.jpg';
+
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +25,7 @@ const Devis = () => {
   const [surfaceType, setSurfaceType] = useState<'internal' | 'external'>('internal');
   const [price, setPrice] = useState<number | null>(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const PRICE_INTERNAL = 110; // MAD per m²
   const PRICE_EXTERNAL = 75; // MAD per m²
@@ -156,17 +162,13 @@ const Devis = () => {
   ];
 
   const internalImages = [
-    { title: t('gallery.categories.spa'), url: roomSultanImg },
-    { title: t('gallery.categories.spa'), url: 'https://images.unsplash.com/photo-1544161515-4af6ce1dbbe3?q=80&w=400&auto=format&fit=crop' },
-    { title: t('gallery.categories.bathroom'), url: 'https://images.unsplash.com/photo-1620626011761-9963d7521477?q=80&w=400&auto=format&fit=crop' },
-    { title: t('gallery.categories.rooms'), url: roomSultanImg },
+    { title: t('gallery.categories.spa'), url: spa },
+    { title: t('gallery.categories.bathroom'), url: bathroom },
   ];
 
   const galleryPreviews = [
-    { title: t('devis.categories.facades'), url: 'https://images.unsplash.com/photo-1628592102751-ba83b03a442a?q=80&w=400&auto=format&fit=crop' },
-    { title: t('devis.categories.exterior_walls'), url: 'https://images.unsplash.com/photo-1518349662325-bc283c7482f5?q=80&w=400&auto=format&fit=crop' },
-    { title: t('gallery.categories.spa'), url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop' },
-    { title: t('gallery.categories.shower'), url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=400&auto=format&fit=crop' },
+    { title: t('devis.categories.facades'), url: facade },
+    { title: t('devis.categories.exterior_walls'), url: exteriorWall },
   ];
 
   return (
@@ -246,18 +248,22 @@ const Devis = () => {
                 </button>
               </div>
 
-              {/* Surface Type Images */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+              <div className="grid grid-cols-2 gap-3 mt-4">
                 {(surfaceType === 'internal' ? internalImages : galleryPreviews).map((img, idx) => (
-                  <div key={idx} className="relative group overflow-hidden rounded-lg aspect-square border border-warm-white/10">
+                  <div
+                    key={idx}
+                    className="relative group overflow-hidden rounded-lg aspect-[4/3] border border-warm-white/10 cursor-pointer"
+                    onClick={() => setSelectedImage(img.url)}
+                  >
                     <img
                       src={img.url}
                       alt={img.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-charcoal/60 flex items-end p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-charcoal/60 flex items-end justify-between p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="text-white text-xs font-ui uppercase tracking-wider">{img.title}</span>
+                      <ZoomIn className="w-5 h-5 text-white" strokeWidth={1.5} />
                     </div>
                   </div>
                 ))}
@@ -334,6 +340,29 @@ const Devis = () => {
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 bg-charcoal/95 flex items-center justify-center p-4 md:p-8"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-warm-white hover:text-gold transition-colors"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X className="w-8 h-8" strokeWidth={1.5} />
+            <span className="sr-only">{t('gallery.lightbox.close', 'Fermer')}</span>
+          </button>
+          <img
+            src={selectedImage}
+            alt={t('gallery.lightbox.zoom', 'Aperçu')}
+            className="max-w-full max-h-full object-contain"
+            onClick={(e) => e.stopPropagation()}
+            loading="lazy"
+          />
+        </div>
+      )}
 
       {/* Details Section */}
       {showDetails && (

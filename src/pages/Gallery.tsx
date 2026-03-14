@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import heroBathroomImg from '../assets/images/hero_bathroom.webp';
 import projectArchImg from '../assets/images/project_arch.webp';
-import projectShowerImg from '../assets/images/project_shower.jpg';
-import projectTextureImg from '../assets/images/project_texture.jpg';
+import projectShowerImg from '../assets/images/project_shower_compressed.webp';
+import projectTextureImg from '../assets/images/project_texture_compressed.webp';
 import projectModernImg from '../assets/images/project_modern.webp';
 import projectGreenImg from '../assets/images/project_green.webp';
 import projectNicheImg from '../assets/images/project_niche.webp';
@@ -15,9 +15,22 @@ import projectDetailImg from '../assets/images/project_detail.webp';
 import gallery1Img from '../assets/images/gallery1.webp';
 import gallery2Img from '../assets/images/gallery2.webp';
 import gallery3Img from '../assets/images/gallery3.webp';
-import gallery4Img from '../assets/images/gallery4.jpg';
-import sageOasisImg from '../assets/images/sage_oasis.jpg';
+import gallery4Img from '../assets/images/gallery4_compressed.webp';
+import sageOasisImg from '../assets/images/sage_oasis_compressed.webp';
 import craftsmanshipImg from '../assets/images/craftsmanship.webp';
+import img1 from '../assets/images/1.webp';
+import img2 from '../assets/images/2.webp';
+import img8 from '../assets/images/8.webp';
+import img10 from '../assets/images/10.webp';
+import img15 from '../assets/images/15.webp';
+import img16 from '../assets/images/16.webp';
+import img17 from '../assets/images/17.webp';
+import img18 from '../assets/images/18.webp';
+import img19 from '../assets/images/19.webp';
+import img20 from '../assets/images/20.webp';
+import img21 from '../assets/images/21_compressed.webp';
+import img22 from '../assets/images/22_compressed.webp';
+import img24 from '../assets/images/24_compressed.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,7 +91,7 @@ const Gallery = () => {
     {
       src: projectShowerImg,
       alt: t('gallery.images.shower_seamless'),
-      category: 'shower',
+      category: ['shower', 'spa'],
     },
     {
       src: projectTextureImg,
@@ -98,12 +111,12 @@ const Gallery = () => {
     {
       src: projectNicheImg,
       alt: t('gallery.images.niche_integrated'),
-      category: 'detail',
+      category: ['detail', 'walls'],
     },
     {
       src: projectDetailImg,
       alt: t('gallery.images.finish_detail'),
-      category: 'detail',
+      category: ['detail', 'vanity'],
     },
     {
       src: gallery1Img,
@@ -123,7 +136,7 @@ const Gallery = () => {
     {
       src: gallery4Img,
       alt: t('gallery.images.niche_decor'),
-      category: 'decor',
+      category: ['decor', 'walls'],
     },
     {
       src: sageOasisImg,
@@ -135,15 +148,28 @@ const Gallery = () => {
       alt: t('gallery.images.artisanat'),
       category: 'process',
     },
+    { src: img1, alt: t('gallery.images.bathroom_ele'), category: 'walls' },
+    { src: img2, alt: t('gallery.images.shower_seamless'), category: ['detail', 'process'] },
+    { src: img8, alt: t('gallery.images.arch_curve'), category: 'process' },
+    { src: img10, alt: t('gallery.images.niche_integrated'), category: 'process' },
+    { src: img15, alt: t('gallery.images.spa_tadelakt'), category: 'decor' },
+    { src: img16, alt: t('gallery.images.bathroom_lux'), category: 'decor' },
+    { src: img17, alt: t('gallery.images.vanity_organic'), category: ['detail', 'decor'] },
+    { src: img18, alt: t('gallery.images.shower_minimalist'), category: 'shower' },
+    { src: img19, alt: t('gallery.images.niche_decor'), category: 'decor' },
+    { src: img20, alt: t('gallery.images.texture_detail'), category: ['detail', 'decor'] },
+    { src: img21, alt: t('gallery.images.bathroom_modern'), category: ['bathroom', 'vanity'] },
+    { src: img22, alt: t('gallery.images.bathroom_green'), category: 'process' },
+    { src: img24, alt: t('gallery.images.artisanat'), category: 'process' },
   ];
 
-  const categories = ['all', ...Array.from(new Set(galleryImages.map((img) => img.category)))];
+  const categories = ['all', ...Array.from(new Set(galleryImages.flatMap((img) => Array.isArray(img.category) ? img.category : [img.category])))];
   const [activeCategory, setActiveCategory] = useState('all');
 
   const filteredImages =
     activeCategory === 'all'
       ? galleryImages
-      : galleryImages.filter((img) => img.category === activeCategory);
+      : galleryImages.filter((img) => Array.isArray(img.category) ? img.category.includes(activeCategory) : img.category === activeCategory);
 
   return (
     <div className="bg-stone">
@@ -175,11 +201,10 @@ const Gallery = () => {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2 font-ui text-xs uppercase tracking-widest transition-all duration-300 ${
-                activeCategory === category
-                  ? 'bg-gold text-warm-white'
-                  : 'bg-transparent border border-current border-opacity-30 hover:border-gold'
-              }`}
+              className={`px-5 py-2 font-ui text-xs uppercase tracking-widest transition-all duration-300 ${activeCategory === category
+                ? 'bg-gold text-warm-white'
+                : 'bg-transparent border border-current border-opacity-30 hover:border-gold'
+                }`}
             >
               {t(`gallery.categories.${category}`)}
             </button>
@@ -206,7 +231,9 @@ const Gallery = () => {
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
                   <ZoomIn className="w-8 h-8 text-warm-white mx-auto mb-2" strokeWidth={1.5} />
                   <span className="font-ui text-xs uppercase tracking-widest text-warm-white">
-                    {t(`gallery.categories.${image.category}`)}
+                    {Array.isArray(image.category)
+                      ? image.category.map(c => t(`gallery.categories.${c}`)).join(' & ')
+                      : t(`gallery.categories.${image.category}`)}
                   </span>
                 </div>
               </div>
