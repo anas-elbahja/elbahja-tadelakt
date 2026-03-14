@@ -5,6 +5,7 @@ import { ArrowRight, Calculator, Info, MessageCircle, RotateCcw, Check } from 'l
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import roomSultanImg from '../assets/images/TadelaktPro-Jardin-des-Douars-Essaouira-room-Sultan-1-1536x1024.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -155,10 +156,10 @@ const Devis = () => {
   ];
 
   const internalImages = [
-    { title: t('gallery.categories.spa'), url: '/images/TadelaktPro-Jardin-des-Douars-Essaouira-room-Sultan-1-1536x1024.webp' },
+    { title: t('gallery.categories.spa'), url: roomSultanImg },
     { title: t('gallery.categories.spa'), url: 'https://images.unsplash.com/photo-1544161515-4af6ce1dbbe3?q=80&w=400&auto=format&fit=crop' },
     { title: t('gallery.categories.bathroom'), url: 'https://images.unsplash.com/photo-1620626011761-9963d7521477?q=80&w=400&auto=format&fit=crop' },
-    { title: t('gallery.categories.rooms'), url: '/images/TadelaktPro-Jardin-des-Douars-Essaouira-room-Sultan-1-1536x1024.webp' },
+    { title: t('gallery.categories.rooms'), url: roomSultanImg },
   ];
 
   const galleryPreviews = [
@@ -253,6 +254,7 @@ const Devis = () => {
                       src={img.url}
                       alt={img.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-charcoal/60 flex items-end p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="text-white text-xs font-ui uppercase tracking-wider">{img.title}</span>

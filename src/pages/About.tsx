@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { Award, Users, Clock, MapPin, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import craftsmanshipImg from '../assets/images/craftsmanship.jpg';
+import aboutArtisanImg from '../assets/images/about_artisan.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -142,9 +144,10 @@ const About = () => {
           <div className="hero-animate">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden">
               <img
-                src="/images/craftsmanship.jpg"
+                src={craftsmanshipImg}
                 alt={t('gallery.images.artisanat')}
                 className="w-full h-full object-cover img-warm"
+                loading="lazy"
               />
             </div>
           </div>
@@ -224,9 +227,10 @@ const About = () => {
           <div className="order-2 lg:order-1">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden">
               <img
-                src="/images/about_artisan.jpg"
+                src={aboutArtisanImg}
                 alt="Artisan Tadelakt au travail - Savoir-faire ancestral de Tadelakt Elbahja"
                 className="w-full h-full object-cover img-warm"
+                loading="lazy"
               />
             </div>
           </div>

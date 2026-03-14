@@ -4,6 +4,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { X, ZoomIn, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import heroBathroomImg from '../assets/images/hero_bathroom.jpg';
+import projectArchImg from '../assets/images/project_arch.jpg';
+import projectShowerImg from '../assets/images/project_shower.jpg';
+import projectTextureImg from '../assets/images/project_texture.jpg';
+import projectModernImg from '../assets/images/project_modern.jpg';
+import projectGreenImg from '../assets/images/project_green.jpg';
+import projectNicheImg from '../assets/images/project_niche.jpg';
+import projectDetailImg from '../assets/images/project_detail.jpg';
+import gallery1Img from '../assets/images/gallery1.jpg';
+import gallery2Img from '../assets/images/gallery2.jpg';
+import gallery3Img from '../assets/images/gallery3.jpg';
+import gallery4Img from '../assets/images/gallery4.jpg';
+import sageOasisImg from '../assets/images/sage_oasis.jpg';
+import craftsmanshipImg from '../assets/images/craftsmanship.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,72 +66,72 @@ const Gallery = () => {
 
   const galleryImages = [
     {
-      src: '/images/hero_bathroom.jpg',
+      src: heroBathroomImg,
       alt: t('gallery.images.bathroom_ele'),
       category: 'bathroom',
     },
     {
-      src: '/images/project_arch.jpg',
+      src: projectArchImg,
       alt: t('gallery.images.arch_curve'),
       category: 'walls',
     },
     {
-      src: '/images/project_shower.jpg',
+      src: projectShowerImg,
       alt: t('gallery.images.shower_seamless'),
       category: 'shower',
     },
     {
-      src: '/images/project_texture.jpg',
+      src: projectTextureImg,
       alt: t('gallery.images.texture_detail'),
       category: 'detail',
     },
     {
-      src: '/images/project_modern.jpg',
+      src: projectModernImg,
       alt: t('gallery.images.bathroom_modern'),
       category: 'bathroom',
     },
     {
-      src: '/images/project_green.jpg',
+      src: projectGreenImg,
       alt: t('gallery.images.bathroom_green'),
       category: 'bathroom',
     },
     {
-      src: '/images/project_niche.jpg',
+      src: projectNicheImg,
       alt: t('gallery.images.niche_integrated'),
       category: 'detail',
     },
     {
-      src: '/images/project_detail.jpg',
+      src: projectDetailImg,
       alt: t('gallery.images.finish_detail'),
       category: 'detail',
     },
     {
-      src: '/images/gallery1.jpg',
+      src: gallery1Img,
       alt: t('gallery.images.bathroom_lux'),
       category: 'bathroom',
     },
     {
-      src: '/images/gallery2.jpg',
+      src: gallery2Img,
       alt: t('gallery.images.shower_minimalist'),
       category: 'shower',
     },
     {
-      src: '/images/gallery3.jpg',
+      src: gallery3Img,
       alt: t('gallery.images.vanity_organic'),
       category: 'vanity',
     },
     {
-      src: '/images/gallery4.jpg',
+      src: gallery4Img,
       alt: t('gallery.images.niche_decor'),
       category: 'decor',
     },
     {
-      src: '/images/sage_oasis.jpg',
+      src: sageOasisImg,
       alt: t('gallery.images.spa_tadelakt'),
       category: 'spa',
     },
     {
-      src: '/images/craftsmanship.jpg',
+      src: craftsmanshipImg,
       alt: t('gallery.images.artisanat'),
       category: 'process',
     },
@@ -186,6 +200,7 @@ const Gallery = () => {
                 src={image.src}
                 alt={image.alt}
                 className="w-full h-full object-cover img-warm transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/40 transition-all duration-500 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
@@ -218,6 +233,7 @@ const Gallery = () => {
             alt={t('gallery.lightbox.zoom')}
             className="max-w-full max-h-full object-contain"
             onClick={(e) => e.stopPropagation()}
+            loading="lazy"
           />
         </div>
       )}

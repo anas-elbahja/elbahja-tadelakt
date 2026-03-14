@@ -5,6 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Droplets, Leaf, Shield, Infinity } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import heroImg from '../assets/images/hero_bathroom.jpg';
+import projectArchImg from '../assets/images/project_arch.jpg';
+import projectShowerImg from '../assets/images/project_shower.jpg';
+import projectTextureImg from '../assets/images/project_texture.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -139,10 +143,10 @@ const Home = () => {
   ];
 
   const galleryImages = [
-    { src: '/images/hero_bathroom.jpg', alt: 'Salle de bain Tadelakt' },
-    { src: '/images/project_arch.jpg', alt: 'Architecture courbe' },
-    { src: '/images/project_shower.jpg', alt: 'Douche seamless' },
-    { src: '/images/project_texture.jpg', alt: 'Texture Tadelakt' },
+    { src: heroImg, alt: 'Salle de bain Tadelakt' },
+    { src: projectArchImg, alt: 'Architecture courbe' },
+    { src: projectShowerImg, alt: 'Douche seamless' },
+    { src: projectTextureImg, alt: 'Texture Tadelakt' },
   ];
 
   const testimonials = [
@@ -180,9 +184,10 @@ const Home = () => {
           <div ref={heroImageRef} className="order-2 lg:order-1">
             <div className="hero-image-frame relative aspect-[4/5] max-w-lg mx-auto lg:mx-0">
               <img
-                src="/images/hero_bathroom.jpg"
+                src={heroImg}
                 alt="Salle de bain Tadelakt traditionnelle à Marrakech - Tadelakt Elbahja"
                 className="w-full h-full object-cover img-warm"
+                loading="lazy"
               />
             </div>
           </div>
@@ -265,6 +270,7 @@ const Home = () => {
                 src={image.src}
                 alt={image.alt}
                 className="w-full h-full object-cover img-warm"
+                loading="lazy"
               />
               <div className="gallery-overlay">
                 <span className="font-ui text-xs uppercase tracking-widest text-warm-white opacity-0 group-hover:opacity-100 transition-opacity">

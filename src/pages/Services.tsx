@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 import { Home, Bath, Palette, Sparkles, Check, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import projectModernImg from '../assets/images/project_modern.jpg';
+import projectShowerImg from '../assets/images/project_shower.jpg';
+import projectNicheImg from '../assets/images/project_niche.jpg';
+import gallery1Img from '../assets/images/gallery1.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,7 +84,7 @@ const Services = () => {
         t('features.mold_res'),
         t('features.color_range'),
       ],
-      image: '/images/project_modern.jpg',
+      image: projectModernImg,
     },
     {
       icon: Bath,
@@ -92,7 +96,7 @@ const Services = () => {
         t('features.heated_floor'),
         t('home.features.durable.title'),
       ],
-      image: '/images/project_shower.jpg',
+      image: projectShowerImg,
     },
     {
       icon: Palette,
@@ -104,7 +108,7 @@ const Services = () => {
         t('features.textured'),
         t('features.patina'),
       ],
-      image: '/images/project_niche.jpg',
+      image: projectNicheImg,
     },
     {
       icon: Sparkles,
@@ -116,7 +120,7 @@ const Services = () => {
         t('features.arch_collaboration'),
         t('features.dedicated_followup'),
       ],
-      image: '/images/gallery1.jpg',
+      image: gallery1Img,
     },
   ];
 
@@ -200,6 +204,7 @@ const Services = () => {
                   src={service.image}
                   alt={service.title}
                   className="w-full h-full object-cover img-warm transition-transform duration-700 hover:scale-105"
+                  loading="lazy"
                 />
               </div>
 
