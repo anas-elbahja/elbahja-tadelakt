@@ -15,7 +15,6 @@
     "destination": "dist",
     "include": [
       "/",
-      "/home",
       "/about",
       "/contact",
       "/devis",
@@ -26,7 +25,11 @@
       "--no-sandbox",
       "--disable-setuid-sandbox"
     ],
-    "skipThirdPartyRequests": true
+    "skipThirdPartyRequests": true,
+    "removeBlobs": true,
+    "minifyHtml": {
+      "collapseWhitespace": false
+    }
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

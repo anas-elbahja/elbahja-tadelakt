@@ -187,7 +187,8 @@ const Home = () => {
                 src={heroImg}
                 alt="Salle de bain Tadelakt traditionnelle à Marrakech - Tadelakt Elbahja"
                 className="w-full h-full object-cover img-warm"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
               />
             </div>
           </div>
