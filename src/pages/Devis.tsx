@@ -147,7 +147,6 @@ const Devis = () => {
   };
 
   const inclusions = [
-    t('devis.details.items.prep'),
     t('devis.details.items.app'),
     t('devis.details.items.soap'),
     t('devis.details.items.waterproof'),

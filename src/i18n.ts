@@ -280,15 +280,14 @@ const resources = {
           "includes": "Ce Prix Inclut",
           "important": "Informations Importantes",
           "items": {
-            "prep": "Préparation des surfaces",
             "app": "Application du Tadelakt (2-3 couches)",
             "soap": "Polissage au savon noir",
             "waterproof": "Finition étanche",
-            "warranty": "Garantie 5 ans"
+            "warranty": "Garantie 1 an"
           },
           "notes": {
             "complexity": "Le prix peut varier selon la complexité du projet",
-            "small": "Les surfaces inférieures à 10m² peuvent avoir un tarif majoré",
+            "small": "Les surfaces inférieures à 40m² peuvent avoir un tarif majoré",
             "travel": "Transport et hébergement en dehors de Marrakech en sus",
             "final": "Devis définitif après visite sur site"
           }
@@ -593,15 +592,14 @@ const resources = {
           "includes": "This Price Includes",
           "important": "Important Information",
           "items": {
-            "prep": "Surface preparation",
             "app": "Tadelakt application (2-3 layers)",
             "soap": "Black soap polishing",
             "waterproof": "Waterproof finish",
-            "warranty": "5-year warranty"
+            "warranty": "1-year warranty"
           },
           "notes": {
             "complexity": "The price may vary depending on the complexity of the project",
-            "small": "Surfaces smaller than 10m² may have an increased rate",
+            "small": "Surfaces smaller than 40m² may have an increased rate",
             "travel": "Transport and accommodation outside Marrakech extra",
             "final": "Final quote after on-site visit"
           }
