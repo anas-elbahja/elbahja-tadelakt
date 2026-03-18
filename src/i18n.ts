@@ -282,14 +282,12 @@ const resources = {
           "items": {
             "app": "Application du Tadelakt (2-3 couches)",
             "soap": "Polissage au savon noir",
-            "waterproof": "Finition étanche",
-            "warranty": "Garantie 1 an"
+            "waterproof": "Finition étanche"
           },
           "notes": {
             "complexity": "Le prix peut varier selon la complexité du projet",
-            "small": "Les surfaces inférieures à 40m² peuvent avoir un tarif majoré",
-            "travel": "Transport et hébergement en dehors de Marrakech en sus",
-            "final": "Devis définitif après visite sur site"
+            "small": "Les surfaces inférieures à 100m² peuvent avoir un tarif majoré",
+            "travel": "Transport et hébergement en dehors de Marrakech en sus"
           }
         },
         "cta": {
@@ -300,7 +298,7 @@ const resources = {
         "faq": {
           "title_part1": "Questions",
           "title_part2": "Fréquentes",
-          "q1": { "q": "Combien de temps dure l'application?", "a": "Une salle de bain standard prend environ 4-5 jours à appliquer, plus 30 jours de séchage complet." },
+          "q1": { "q": "Combien de temps dure l'application?", "a": "Une salle de bain standard prend environ 4-5 jours à appliquer." },
           "q2": { "q": "Le Tadelakt nécessite-t-il beaucoup d'entretien?", "a": "Non, un entretien minimal suffit. Un nettoyage régulier avec un savon pH neutre et une réapplication de savon noir tous les 2-3 ans." },
           "q3": { "q": "Puis-je choisir n'importe quelle couleur?", "a": "Oui! Nous pouvons créer pratiquement n'importe quelle teinte en mélangeant des pigments naturels à la chaux." },
           "q4": { "q": "Le Tadelakt est-il vraiment étanche?", "a": "Oui, lorsqu'il est correctement appliqué et traité au savon noir, le Tadelakt est 100% étanche." }
@@ -594,14 +592,12 @@ const resources = {
           "items": {
             "app": "Tadelakt application (2-3 layers)",
             "soap": "Black soap polishing",
-            "waterproof": "Waterproof finish",
-            "warranty": "1-year warranty"
+            "waterproof": "Waterproof finish"
           },
           "notes": {
             "complexity": "The price may vary depending on the complexity of the project",
-            "small": "Surfaces smaller than 40m² may have an increased rate",
-            "travel": "Transport and accommodation outside Marrakech extra",
-            "final": "Final quote after on-site visit"
+            "small": "Surfaces smaller than 100m² may have an increased rate",
+            "travel": "Transport and accommodation outside Marrakech extra"
           }
         },
         "cta": {
@@ -612,7 +608,7 @@ const resources = {
         "faq": {
           "title_part1": "Frequently Asked",
           "title_part2": "Questions",
-          "q1": { "q": "How long does the application take?", "a": "A standard bathroom takes about 4-5 days to apply, plus 30 days of complete drying." },
+          "q1": { "q": "How long does the application take?", "a": "A standard bathroom takes about 4-5 days to apply." },
           "q2": { "q": "Does Tadelakt require a lot of maintenance?", "a": "No, minimal maintenance is enough. Regular cleaning with a pH-neutral soap and reapplication of black soap every 2-3 years." },
           "q3": { "q": "Can I choose any color?", "a": "Yes! We can create virtually any shade by mixing natural pigments with lime." },
           "q4": { "q": "Is Tadelakt really waterproof?", "a": "Yes, when correctly applied and treated with black soap, Tadelakt is 100% waterproof." }

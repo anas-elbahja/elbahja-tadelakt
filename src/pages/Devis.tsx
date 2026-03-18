@@ -26,9 +26,10 @@ const Devis = () => {
   const [price, setPrice] = useState<number | null>(null);
   const [showDetails, setShowDetails] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [fixedPriceMessage, setFixedPriceMessage] = useState<string | null>(null);
 
   const PRICE_INTERNAL = 110; // MAD per m²
-  const PRICE_EXTERNAL = 75; // MAD per m²
+  const PRICE_EXTERNAL = 70; // MAD per m²
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -90,6 +91,21 @@ const Devis = () => {
       toast.error(i18n.language === 'ar' ? 'يرجى إدخال مساحة صحيحة' : 'Veuillez entrer une surface valide');
       return;
     }
+
+    if (surfaceValue < 100) {
+      setPrice(null);
+      setShowDetails(false);
+      setFixedPriceMessage(
+        i18n.language === 'ar'
+          ? 'بالنسبة للمساحات التي تقل عن 100 متر مربع، يتم تطبيق سعر ثابت بسبب التكاليف التشغيلية. من 100 متر مربع فما فوق، يتم حساب السعر لكل متر مربع.'
+          : i18n.language === 'fr'
+            ? "Pour les surfaces inférieures à 100 m², un prix fixe s'applique en raison des coûts opérationnels. À partir de 100 m² et plus, la tarification est calculée au mètre carré."
+            : "For surfaces under 100 m², a fixed price applies due to operational costs. From 100 m² and above, pricing is calculated per square meter."
+      );
+      return;
+    }
+
+    setFixedPriceMessage(null);
     const currentPricePerM2 = surfaceType === 'internal' ? PRICE_INTERNAL : PRICE_EXTERNAL;
     const totalPrice = surfaceValue * currentPricePerM2;
     setPrice(totalPrice);
@@ -133,6 +149,7 @@ const Devis = () => {
   const resetCalculator = () => {
     setSurface('');
     setPrice(null);
+    setFixedPriceMessage(null);
     setShowDetails(false);
     toast.info(t('devis.calculator.reset_info'));
   };
@@ -150,14 +167,12 @@ const Devis = () => {
     t('devis.details.items.app'),
     t('devis.details.items.soap'),
     t('devis.details.items.waterproof'),
-    t('devis.details.items.warranty'),
   ];
 
   const notes = [
     t('devis.details.notes.complexity'),
     t('devis.details.notes.small'),
     t('devis.details.notes.travel'),
-    t('devis.details.notes.final'),
   ];
 
   const internalImages = [
@@ -228,7 +243,7 @@ const Devis = () => {
               {/* Type Selection */}
               <div className="flex bg-warm-white/5 border border-white/10 rounded-lg p-1">
                 <button
-                  onClick={() => { setSurfaceType('internal'); setPrice(null); setShowDetails(false); }}
+                  onClick={() => { setSurfaceType('internal'); setPrice(null); setFixedPriceMessage(null); setShowDetails(false); }}
                   className={`flex-1 py-3 text-sm font-ui uppercase tracking-widest transition-all rounded-md ${surfaceType === 'internal'
                     ? 'bg-gold text-charcoal'
                     : 'text-warm-white/70 hover:text-warm-white hover:bg-white/5'
@@ -237,7 +252,7 @@ const Devis = () => {
                   {t('devis.calculator.internal')}
                 </button>
                 <button
-                  onClick={() => { setSurfaceType('external'); setPrice(null); setShowDetails(false); }}
+                  onClick={() => { setSurfaceType('external'); setPrice(null); setFixedPriceMessage(null); setShowDetails(false); }}
                   className={`flex-1 py-3 text-sm font-ui uppercase tracking-widest transition-all rounded-md ${surfaceType === 'external'
                     ? 'bg-gold text-charcoal'
                     : 'text-warm-white/70 hover:text-warm-white hover:bg-white/5'
@@ -333,6 +348,31 @@ const Devis = () => {
                   <p className="font-body text-sm text-warm-white/50 mt-2">
                     {t('devis.calculator.surface_for', { surface })}
                   </p>
+                </div>
+              )}
+
+              {fixedPriceMessage && (
+                <div className="mt-8 p-6 bg-warm-white/5 border border-gold/30 rounded-2xl text-center animate-fade-in flex flex-col items-center">
+                  <Info className="w-6 h-6 text-gold mb-3" />
+                  <p className="font-body text-sm text-warm-white/90 mb-4">
+                    {fixedPriceMessage}
+                  </p>
+                  <p className="font-body text-sm text-warm-white/70 mb-4">
+                    {i18n.language === 'ar'
+                      ? 'للحصول على السعر الدقيق، يرجى التواصل معنا عبر الواتساب.'
+                      : i18n.language === 'fr'
+                        ? 'Pour obtenir le prix exact, veuillez nous contacter via WhatsApp.'
+                        : 'To get the exact price, please contact us via WhatsApp.'}
+                  </p>
+                  <a
+                    href="https://wa.me/212669337793"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="whatsapp-btn text-sm py-2 px-6"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    {t('common.whatsapp_button')}
+                  </a>
                 </div>
               )}
             </div>
