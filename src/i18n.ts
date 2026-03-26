@@ -11,14 +11,14 @@ const resources = {
         "gallery": "Réalisations",
         "about": "À Propos",
         "contact": "Contact",
-        "devis": "Devis",
-        "devis_btn": "Devis Gratuit"
+        "devis": "Estimateur de prix",
+        "devis_btn": "Estimateur de prix"
       },
       "common": {
         "whatsapp_button": "Discuter sur WhatsApp",
         "whatsapp_message": "Bonjour, je suis intéressé par vos services Tadelakt. Pourriez-vous m'en dire plus ?",
-        "request_quote": "Demander un Devis",
-        "request_quote_free": "Demander un Devis Gratuit",
+        "request_quote": "Estimer le prix",
+        "request_quote_free": "Estimer mon projet gratuitement",
         "see_projects": "Voir nos Réalisations",
         "learn_more": "En Savoir Plus",
         "see_all": "Voir Tout",
@@ -50,8 +50,8 @@ const resources = {
           "description": "Besoin d'un renseignement ou d'une visite ? Contactez Tadelakt Elbahja à Marrakech."
         },
         "devis": {
-          "title": "Devis Gratuit Tadelakt | Tadelakt Elbahja",
-          "description": "Estimez le prix de votre projet Tadelakt en ligne et recevez un devis personnalisé gratuitement."
+          "title": "Estimateur de prix Tadelakt | Tadelakt Elbahja",
+          "description": "Estimez le prix de votre projet Tadelakt en ligne et obtenez une estimation personnalisée gratuitement."
         }
       },
       "footer": {
@@ -116,7 +116,7 @@ const resources = {
         "cta": {
           "label": "COMMENCEZ VOTRE PROJET",
           "title": "Prêt à Transformer Votre Espace?",
-          "description": "Contactez-nous dès aujourd'hui pour discuter de votre projet et recevoir un devis personnalisé gratuitement."
+          "description": "Contactez-nous dès aujourd'hui pour discuter de votre projet et obtenir une estimation personnalisée gratuitement."
         }
       },
       "services": {
@@ -151,14 +151,14 @@ const resources = {
           "desc": "Chaque projet suit un processus rigoureux pour garantir une finition exceptionnelle qui respecte la tradition tout en répondant aux exigences modernes.",
           "step1": { "title": "Consultation", "desc": "Nous discutons de votre projet, vos besoins et votre vision." },
           "step2": { "title": "Évaluation", "desc": "Visite sur site et évaluation technique des surfaces." },
-          "step3": { "title": "Devis", "desc": "Proposition détaillée avec estimation des coûts et délais." },
+          "step3": { "title": "Estimation", "desc": "Proposition détaillée avec estimation des coûts et délais." },
           "step4": { "title": "Préparation", "desc": "Préparation minutieuse des surfaces pour une adhérence optimale." },
           "step5": { "title": "Application", "desc": "Application artisanale du Tadelakt en plusieurs couches." },
           "step6": { "title": "Finition", "desc": "Polissage au savon noir pour une étanchéité parfaite." }
         },
         "cta": {
           "title": "Votre Projet Mérite l'Excellence",
-          "description": "Contactez-nous pour discuter de votre projet et recevoir un devis personnalisé adapté à vos besoins."
+          "description": "Contactez-nous pour discuter de votre projet et obtenir une estimation personnalisée adaptée à vos besoins."
         }
       },
       "about": {
@@ -231,7 +231,7 @@ const resources = {
           "label": "VOTRE PROJET",
           "title_part1": "Envie d'un Résultat",
           "title_part2": "Similaire?",
-          "description": "Chaque projet est unique. Contactez-nous pour discuter de vos idées et recevoir un devis personnalisé."
+          "description": "Chaque projet est unique. Contactez-nous pour discuter de vos idées et obtenir une estimation personnalisée."
         }
       },
       "contact": {
@@ -239,7 +239,7 @@ const resources = {
           "label": "CONTACT",
           "title_part1": "Parlons de Votre",
           "title_part2": "Projet",
-          "description": "Que vous ayez une question, besoin d'un devis, ou simplement envie d'en savoir plus sur le Tadelakt, nous sommes là pour vous aider."
+          "description": "Que vous ayez une question, besoin d'une estimation, ou simplement envie d'en savoir plus sur le Tadelakt, nous sommes là pour vous aider."
         },
         "info": {
           "title": "Informations de Contact",
@@ -257,13 +257,13 @@ const resources = {
       },
       "devis": {
         "hero": {
-          "label": "DEVIS GRATUIT",
+          "label": "ESTIMATEUR DE PRIX",
           "title_part1": "Calculez Votre",
-          "title_part2": "Devis",
+          "title_part2": "Prix",
           "description": "Obtenez une estimation instantanée pour votre projet Tadelakt. Entrez simplement la surface en mètres carrés et découvrez le prix indicatif."
         },
         "calculator": {
-          "title": "Calculateur de Prix",
+          "title": "Estimateur de prix",
           "internal": "Intérieur",
           "external": "Extérieur",
           "surface_label": "Surface en m²",
@@ -293,7 +293,7 @@ const resources = {
         "cta": {
           "title_part1": "Prêt à Passer à l'",
           "title_part2": "Action?",
-          "description": "Ce calculateur vous donne une estimation indicative. Pour un devis précis et personnalisé, contactez-nous directement."
+          "description": "Ce calculateur vous donne une estimation indicative. Pour un prix précis et personnalisé, contactez-nous directement."
         },
         "faq": {
           "title_part1": "Questions",
@@ -321,14 +321,14 @@ const resources = {
         "gallery": "Portfolio",
         "about": "About Us",
         "contact": "Contact",
-        "devis": "Quote",
-        "devis_btn": "Free Quote"
+        "devis": "Price Calculator",
+        "devis_btn": "Price Calculator"
       },
       "common": {
         "whatsapp_button": "Chat on WhatsApp",
         "whatsapp_message": "Hello, I am interested in your Tadelakt services. Could you please tell me more?",
-        "request_quote": "Request a Quote",
-        "request_quote_free": "Request a Free Quote",
+        "request_quote": "Price Calculator",
+        "request_quote_free": "Calculate Project Price",
         "see_projects": "View our Portfolio",
         "learn_more": "Learn More",
         "see_all": "View All",
@@ -360,8 +360,8 @@ const resources = {
           "description": "Need information or a visit? Contact Tadelakt Elbahja in Marrakech."
         },
         "devis": {
-          "title": "Free Tadelakt Quote | Tadelakt Elbahja",
-          "description": "Estimate the price of your Tadelakt project online and receive a personalized quote for free."
+          "title": "Tadelakt Price Calculator | Tadelakt Elbahja",
+          "description": "Estimate the price of your Tadelakt project online and get a personalized price estimate for free."
         }
       },
       "footer": {
@@ -426,7 +426,7 @@ const resources = {
         "cta": {
           "label": "START YOUR PROJECT",
           "title": "Ready to Transform Your Space?",
-          "description": "Contact us today to discuss your project and receive a personalized quote for free."
+          "description": "Contact us today to discuss your project and get a personalized price estimate for free."
         }
       },
       "services": {
@@ -461,14 +461,14 @@ const resources = {
           "desc": "Every project follows a rigorous process to guarantee an exceptional finish that respects tradition while meeting modern requirements.",
           "step1": { "title": "Consultation", "desc": "We discuss your project, your needs and your vision." },
           "step2": { "title": "Evaluation", "desc": "On-site visit and technical evaluation of surfaces." },
-          "step3": { "title": "Quote", "desc": "Detailed proposal with estimation of costs and deadlines." },
+          "step3": { "title": "Estimation", "desc": "Detailed proposal with estimation of costs and deadlines." },
           "step4": { "title": "Preparation", "desc": "Meticulous preparation of surfaces for optimal adhesion." },
           "step5": { "title": "Application", "desc": "Artisan application of Tadelakt in several layers." },
           "step6": { "title": "Finishing", "desc": "Polishing with black soap for perfect waterproofing." }
         },
         "cta": {
           "title": "Your Project Deserves Excellence",
-          "description": "Contact us to discuss your project and receive a personalized quote tailored to your needs."
+          "description": "Contact us to discuss your project and receive a personalized price estimate tailored to your needs."
         }
       },
       "about": {
@@ -541,7 +541,7 @@ const resources = {
           "label": "YOUR PROJECT",
           "title_part1": "Want a Similar",
           "title_part2": "Result?",
-          "description": "Each project is unique. Contact us to discuss your ideas and receive a personalized quote."
+          "description": "Each project is unique. Contact us to discuss your ideas and receive a personalized price estimate."
         }
       },
       "contact": {
@@ -549,7 +549,7 @@ const resources = {
           "label": "CONTACT",
           "title_part1": "Let's Talk About",
           "title_part2": "Your Project",
-          "description": "Whether you have a question, need a quote, or simply want to know more about Tadelakt, we are here to help you."
+          "description": "Whether you have a question, need a price estimate, or simply want to know more about Tadelakt, we are here to help you."
         },
         "info": {
           "title": "Contact Information",
@@ -567,9 +567,9 @@ const resources = {
       },
       "devis": {
         "hero": {
-          "label": "FREE QUOTE",
+          "label": "PRICE CALCULATOR",
           "title_part1": "Calculate Your",
-          "title_part2": "Quote",
+          "title_part2": "Price",
           "description": "Get an instant estimate for your Tadelakt project. Simply enter the surface area in square meters and discover the indicative price."
         },
         "calculator": {
@@ -603,7 +603,7 @@ const resources = {
         "cta": {
           "title_part1": "Ready to Take",
           "title_part2": "Action?",
-          "description": "This calculator gives you an indicative estimate. For a precise and personalized quote, contact us directly."
+          "description": "This calculator gives you an indicative estimate. For a precise and personalized price, contact us directly."
         },
         "faq": {
           "title_part1": "Frequently Asked",

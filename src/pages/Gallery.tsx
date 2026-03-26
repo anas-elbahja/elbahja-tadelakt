@@ -11,14 +11,12 @@ import projectTextureImg from '../assets/images/project_texture_compressed.webp'
 import projectModernImg from '../assets/images/project_modern.webp';
 import projectGreenImg from '../assets/images/project_green.webp';
 import projectNicheImg from '../assets/images/project_niche.webp';
-import projectDetailImg from '../assets/images/project_detail.webp';
 import gallery1Img from '../assets/images/gallery1.webp';
 import gallery2Img from '../assets/images/gallery2.webp';
 import gallery3Img from '../assets/images/gallery3.webp';
 import gallery4Img from '../assets/images/gallery4_compressed.webp';
 import sageOasisImg from '../assets/images/sage_oasis_compressed.webp';
 import craftsmanshipImg from '../assets/images/craftsmanship.webp';
-import img1 from '../assets/images/1.webp';
 import img2 from '../assets/images/2.webp';
 import img8 from '../assets/images/8.webp';
 import img10 from '../assets/images/10.webp';
@@ -114,11 +112,6 @@ const Gallery = () => {
       category: ['detail', 'walls'],
     },
     {
-      src: projectDetailImg,
-      alt: t('gallery.images.finish_detail'),
-      category: ['detail', 'vanity'],
-    },
-    {
       src: gallery1Img,
       alt: t('gallery.images.bathroom_lux'),
       category: 'bathroom',
@@ -148,7 +141,6 @@ const Gallery = () => {
       alt: t('gallery.images.artisanat'),
       category: 'process',
     },
-    { src: img1, alt: t('gallery.images.bathroom_ele'), category: 'walls' },
     { src: img2, alt: t('gallery.images.shower_seamless'), category: ['detail', 'process'] },
     { src: img8, alt: t('gallery.images.arch_curve'), category: 'process' },
     { src: img10, alt: t('gallery.images.niche_integrated'), category: 'process' },

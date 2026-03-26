@@ -28,7 +28,7 @@ const Navigation = () => {
     { path: '/gallery', label: t('nav.gallery', 'Galerie') },
     { path: '/about', label: t('nav.about', 'À Propos') },
     { path: '/contact', label: t('nav.contact', 'Contact') },
-    { path: '/devis', label: t('nav.devis', 'Devis') },
+    { path: '/devis', label: t('nav.devis', 'Estimateur de prix') },
   ];
 
   const isActive = (path: string) => location.pathname === path;
